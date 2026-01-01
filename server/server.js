@@ -9,11 +9,11 @@ import { uploadMp3 } from "./src/upload.js";
 
 const app = express();
 
-// FRONTEND origin for dev (Live Server). You can widen this later.
 app.use(cors({
   origin: [
     "http://127.0.0.1:5500",
-    "http://localhost:5500"
+    "http://localhost:5500",
+    "https://lilights.github.io"
   ]
 }));
 
