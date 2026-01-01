@@ -1,142 +1,73 @@
-import { registerUser, passwordIsValid } from "./auth.js";
+import { API_BASE } from "./apiConfig.js";
 
 const form = document.getElementById("registerForm");
 const err = document.getElementById("registerError");
 
-const avatarUrlInput = document.getElementById("avatarUrlInput");
-const pickAvatarBtn = document.getElementById("pickAvatarBtn");
+// Optional: if you have the avatar picker
+const avatarInput = document.getElementById("avatarUrlInput") || form.avatarUrl;
 
-// Modal elements
-const avatarModal = document.getElementById("avatarModal");
-const avatarGrid = document.getElementById("avatarGrid");
-const avatarSeed = document.getElementById("avatarSeed");
-const regenAvatarsBtn = document.getElementById("regenAvatarsBtn");
-const avatarPreview = document.getElementById("avatarPreview");
-
-pickAvatarBtn?.addEventListener("click", () => openAvatarModal());
-
-regenAvatarsBtn?.addEventListener("click", () => {
-  const seed = avatarSeed.value.trim() || randomSeed();
-  renderAvatarGrid(seed, getSelectedSet());
-});
-
-avatarSeed?.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    e.preventDefault();
-    const seed = avatarSeed.value.trim() || randomSeed();
-    renderAvatarGrid(seed, getSelectedSet());
-  }
-});
-
-avatarModal?.querySelectorAll("[data-close-avatar]").forEach(el => {
-  el.addEventListener("click", closeAvatarModal);
-});
-
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && avatarModal && !avatarModal.classList.contains("hidden")) {
-    closeAvatarModal();
-  }
-});
-
-// Update avatars when user changes set
-document.querySelectorAll('input[name="roboSet"]').forEach(r => {
-  r.addEventListener("change", () => {
-    const seed = avatarSeed.value.trim() || randomSeed();
-    renderAvatarGrid(seed, getSelectedSet());
-  });
-});
-
-function getSelectedSet() {
-  const el = document.querySelector('input[name="roboSet"]:checked');
-  return el?.value || "set1";
+function passwordRuleText() {
+  return "Password must be at least 6 characters and include: a letter, a digit, and a special character (e.g. !@#$).";
 }
 
-function openAvatarModal() {
-  avatarModal.classList.remove("hidden");
-  avatarModal.setAttribute("aria-hidden", "false");
-
-  const username = form?.username?.value?.trim();
-  const seed = username || avatarSeed.value.trim() || randomSeed();
-  avatarSeed.value = seed;
-
-  renderAvatarGrid(seed, getSelectedSet());
+function passwordIsValid(pw) {
+  if (typeof pw !== "string" || pw.length < 6) return false;
+  const hasLetter = /[A-Za-z]/.test(pw);
+  const hasDigit = /\d/.test(pw);
+  const hasSpecial = /[^A-Za-z0-9]/.test(pw);
+  return hasLetter && hasDigit && hasSpecial;
 }
 
-function closeAvatarModal() {
-  avatarModal.classList.add("hidden");
-  avatarModal.setAttribute("aria-hidden", "true");
-}
-
-function randomSeed() {
-  return Math.random().toString(36).slice(2, 10);
-}
-
-function buildRobohashUrl(seed, set, size = "150x150") {
-  const s = encodeURIComponent(seed);
-  const st = encodeURIComponent(set);
-  return `https://robohash.org/${s}.png?set=${st}&size=${size}`;
-}
-
-function renderAvatarGrid(seed, set) {
-  const options = [];
-  for (let i = 1; i <= 12; i++) {
-    options.push(buildRobohashUrl(`${seed}-${i}`, set, "160x160"));
-  }
-
-  const previewUrl = options[0];
-  avatarPreview.innerHTML = `
-    <div class="muted" style="margin-bottom:6px;">Preview</div>
-    <div class="avatar-preview-box">
-      <img src="${previewUrl}" alt="avatar preview" />
-      <div class="muted" style="margin-top:6px; font-size:12px;">Click an option below to select</div>
-    </div>
-  `;
-
-  avatarGrid.innerHTML = options.map(url => `
-    <button class="avatar-choice" type="button" data-url="${url}" title="Use this avatar">
-      <img src="${url}" alt="avatar option" />
-    </button>
-  `).join("");
-
-  avatarGrid.querySelectorAll("[data-url]").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const url = btn.getAttribute("data-url");
-      avatarUrlInput.value = url;
-      avatarPreview.querySelector("img")?.setAttribute("src", url);
-      closeAvatarModal();
-    });
-  });
+function showError(msg) {
+  err.textContent = msg || "";
 }
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
-  err.textContent = "";
+  showError("");
 
   const username = form.username.value.trim();
   const password = form.password.value;
   const confirmPassword = form.confirmPassword.value;
   const firstName = form.firstName.value.trim();
-  const avatarUrl = avatarUrlInput.value.trim();
+  const avatarUrl = (avatarInput?.value || "").trim();
 
-  if (!username || !password || !confirmPassword || !firstName || !avatarUrl) {
-    err.textContent = "All fields are required.";
+  // Frontend validation (shows clear errors)
+  if (!username || !password || !confirmPassword || !firstName) {
+    showError("Please fill in: Username, Password, Confirm Password, and First Name.");
     return;
   }
-  if (!passwordIsValid(password)) {
-    err.textContent = "Password must be at least 6 characters and include a letter, a number, and a special character.";
-    return;
-  }
+
   if (password !== confirmPassword) {
-    err.textContent = "Passwords do not match.";
+    showError("Passwords do not match.");
     return;
   }
 
-  const res = await registerUser({ username, password, firstName, avatarUrl });
-  if (!res.ok) {
-    err.textContent = res.error;
+  if (!passwordIsValid(password)) {
+    showError(passwordRuleText());
     return;
   }
 
-  // After successful register, go to login
-  window.location.href = "login.html";
+  // Call backend
+  try {
+    const res = await fetch(`${API_BASE}/api/auth/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password, firstName, avatarUrl }),
+    });
+
+    const data = await res.json().catch(() => ({}));
+
+    if (!res.ok) {
+      // Show server error if present, otherwise generic
+      showError(data?.error || data?.message || "Registration failed.");
+      return;
+    }
+
+    // Success -> go login
+    window.location.href = "login.html";
+  } catch (e2) {
+    // Typically server not running / wrong API_BASE / CORS
+    showError(`Cannot reach server. Is it running? (${e2?.message || "network error"})`);
+  }
 });
