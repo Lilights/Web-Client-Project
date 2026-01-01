@@ -4,6 +4,6 @@ export const APP = {
 };
 
 export const YT = {
-  apiKey: "AIzaSyBX8yly5n2FvcgfAXw9GZZpB5ErSbkHt0A",
-  maxResults: 12,
+  apiKey: "", // injected at runtime or local only
+  maxResults: 12
 };
