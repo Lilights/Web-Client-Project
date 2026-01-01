@@ -21,12 +21,12 @@ export function renderTopbarUser(user) {
   if (!el) return;
 
   el.innerHTML = `
-    <div class="topbar-user">
-      <img class="avatar" src="${escapeHtml(user.avatarUrl)}" alt="avatar" />
-      <div class="meta">
-        <div class="hello">Hello ${escapeHtml(user.firstName || user.username)}</div>
-        <button class="link-btn" id="logoutBtn" type="button">Logout</button>
+    <div class="topbar-right">
+      <div class="topbar-user">
+        <img class="avatar-sm" src="${escapeHtml(user.avatarUrl)}" alt="avatar" />
+        <div class="hello-text">Hello ${escapeHtml(user.firstName || user.username)}</div>
       </div>
+      <button class="btn-mini" id="logoutBtn" type="button">Logout</button>
     </div>
   `;
 
@@ -35,6 +35,7 @@ export function renderTopbarUser(user) {
     window.location.href = "login.html";
   });
 }
+
 
 
 export function showToast(message, actionText, actionHref) {
