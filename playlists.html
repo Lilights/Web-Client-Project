@@ -1,40 +1,33 @@
 <!doctype html>
-<html lang="en" dir="ltr">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/main.css" />
-  <title>Playlists</title>
-</head>
-<body>
-  <header class="topbar">
-  <div class="topbar-inner">
-    <div class="brand">
-      <span class="brand-dot"></span>
-      <span>Web Client Project</span>
-    </div>
+  <html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css" />
+    <title>Playlists</title>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="brand">
+          <span class="brand-dot"></span>
+          <span>Web Client Project</span>
+        </div>
 
-    <nav class="topnav">
-      <a href="search.html">Search</a>
-      <a href="playlists.html" class="active">Playlists</a>
-    </nav>
+        <nav class="topnav">
+          <a href="search.html">Search</a>
+          <a href="playlists.html" class="active">Playlists</a>
+        </nav>
 
-    <div class="topbar-right">
-      <div class="topbar-user">
-        <img id="userAvatar" class="avatar-sm" alt="avatar" />
-        <div id="helloUser" class="hello-text">Hello</div>
+        <div data-topbar-user></div>
       </div>
-      <button id="logoutBtn" class="btn-mini" type="button">Logout</button>
-    </div>
-  </div>
-</header>
+    </header>
 
 
-  <main class="page-center">
-    <div class="home-wrap">
+    <main class="container section-gap">
 
       <section class="split">
         <aside class="sidebar card">
@@ -60,22 +53,22 @@
           <div id="items" class="col"></div>
         </section>
       </section>
+    
+    </main>
+
+    <!-- Playlist Player Modal -->
+    <div id="plPlayerModal" class="modal hidden" aria-hidden="true">
+      <div class="modal-backdrop" data-close-plmodal></div>
+      <div class="modal-content">
+        <button class="icon-btn" data-close-plmodal type="button">×</button>
+        <div id="plPlayerHost"></div>
+      </div>
     </div>
-  </main>
 
-  <!-- Playlist Player Modal -->
-  <div id="plPlayerModal" class="modal hidden" aria-hidden="true">
-    <div class="modal-backdrop" data-close-plmodal></div>
-    <div class="modal-content">
-      <button class="icon-btn" data-close-plmodal type="button">×</button>
-      <div id="plPlayerHost"></div>
-    </div>
-  </div>
+    <div id="toastHost" class="toast-host"></div>
 
-  <div id="toastHost" class="toast-host"></div>
+    <script type="module" src="js/config.local.js"></script>
+    <script type="module" src="js/playlists.js"></script>
 
-  <script type="module" src="js/config.local.js"></script>
-  <script type="module" src="js/playlists.js"></script>
-
-</body>
+  </body>
 </html>

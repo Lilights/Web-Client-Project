@@ -560,3 +560,93 @@ hr{
   .actions{ flex-direction: column; align-items: stretch; }
   .info-grid{ grid-template-columns: 1fr; }
 }
+
+
+/* Global spacing helpers */
+.stack{
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.section-gap{ margin-top: 14px; }
+
+.card{ margin: 0; } /* prevent weird collapsing */
+.actions, .row{ gap: 10px; } /* ensure buttons in a row have spacing */
+
+/* Buttons shouldn’t stick to inputs */
+.btn, .btn-secondary, .btn-danger, .btn-mini{ white-space: nowrap; }
+
+/* Playlist/search panels spacing */
+.panel{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.panel .row{
+  flex-wrap: wrap;
+}
+
+.panel .row > *{
+  margin: 0; /* keep consistent gap usage */
+}
+
+/* Make select/input same height so they look aligned */
+select.input{
+  height: 44px;
+}
+
+/* Prevent tiny icon button from hugging the bar */
+.icon-square{
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.06);
+}
+
+/* Playlists/Search page split layout */
+.split{
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 14px;
+  width: 100%;
+  align-items: start;
+}
+
+.sidebar{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.main{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sidebar-head{
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.pl-list{
+  display:flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Responsive: stack sidebar above main */
+@media (max-width: 900px){
+  .split{
+    grid-template-columns: 1fr;
+  }
+}
