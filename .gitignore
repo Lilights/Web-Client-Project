@@ -1,0 +1,13 @@
+# Backend
+server/node_modules/
+server/uploads/
+server/data/db.json
+
+# Editor/OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# logs
+npm-debug.log*

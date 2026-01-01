@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/main.css" />
+  <title>Login</title>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-user">
+      <div class="meta">
+        <div class="hello">Login</div>
+      </div>
+    </div>
+    <nav class="topnav">
+      <a href="index.html">Home</a>
+      <a href="login.html" class="active">Login</a>
+      <a href="register.html">Register</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="card col">
+      <form id="loginForm" class="col">
+        <label>Username</label>
+        <input class="input" name="username" autocomplete="username" />
+
+        <label>Password</label>
+        <input class="input" name="password" type="password" autocomplete="current-password" />
+
+        <div id="loginError" class="error" style="min-height:18px;"></div>
+
+        <button class="btn" type="submit">Login</button>
+        <a class="btn-secondary" href="register.html">
+          Don’t have an account? Register
+        </a>
+      </form>
+    </section>
+  </main>
+
+  <script type="module" src="js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/main.css" />
+  <title>Search</title>
+</head>
+<body>
+  <header class="topbar">
+    <div data-topbar-user></div>
+    <nav class="topnav">
+      <a href="search.html" class="active">Search</a>
+      <a href="playlists.html">Playlists</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <form id="searchForm" class="row">
+        <input id="qInput" class="input" placeholder="Search songs / artists..." />
+        <button class="btn" type="submit">Search</button>
+      </form>
+      <div id="results" class="grid"></div>
+    </section>
+  </main>
+
+  <!-- Player Modal -->
+  <div id="playerModal" class="modal hidden" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-content">
+      <button class="icon-btn" data-close-modal type="button">×</button>
+      <div id="playerHost"></div>
+    </div>
+  </div>
+
+  <!-- Add to Playlist Modal -->
+  <div id="addModal" class="modal hidden" aria-hidden="true">
+    <div class="modal-backdrop" data-close-add></div>
+    <div class="modal-content">
+      <button class="icon-btn" data-close-add type="button">×</button>
+      <h3>Add to Playlist</h3>
+      <form id="addForm" class="col">
+        <label>Select existing playlist</label>
+        <select id="playlistSelect" class="input"></select>
+
+        <div class="sep">OR</div>
+
+        <label>Create a new playlist</label>
+        <input id="newPlaylistName" class="input" placeholder="New playlist name" />
+
+        <button class="btn" type="submit">Add</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="toastHost" class="toast-host"></div>
+
+  <script type="module" src="js/search.js"></script>
+</body>
+</html>

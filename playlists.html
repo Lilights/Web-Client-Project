@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/main.css" />
+  <title>Playlists</title>
+</head>
+<body>
+  <header class="topbar">
+    <div data-topbar-user></div>
+    <nav class="topnav">
+      <a href="search.html">Search</a>
+      <a href="playlists.html" class="active">Playlists</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="split">
+      <aside class="sidebar card">
+        <div class="sidebar-head">
+          <h3>Your Library</h3>
+          <button id="newPlBtn" class="btn" type="button">+ New Playlist</button>
+        </div>
+        <div id="plList" class="pl-list"></div>
+      </aside>
+
+      <section class="main card">
+        <div id="mainHeader"></div>
+
+        <div class="row">
+          <input id="filterInput" class="input" placeholder="Filter within playlist..." />
+          <select id="sortSelect" class="input">
+            <option value="az">Sort A–Z</option>
+            <option value="rating">Sort by Rating</option>
+          </select>
+          <button id="deletePlBtn" class="btn-danger" type="button">Delete Playlist</button>
+        </div>
+
+        <div id="items" class="col"></div>
+      </section>
+    </section>
+  </main>
+
+  <!-- Playlist Player Modal -->
+  <div id="plPlayerModal" class="modal hidden" aria-hidden="true">
+    <div class="modal-backdrop" data-close-plmodal></div>
+    <div class="modal-content">
+      <button class="icon-btn" data-close-plmodal type="button">×</button>
+      <div id="plPlayerHost"></div>
+    </div>
+  </div>
+
+  <div id="toastHost" class="toast-host"></div>
+
+  <script type="module" src="js/playlists.js"></script>
+</body>
+</html>
