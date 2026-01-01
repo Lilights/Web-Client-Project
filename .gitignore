@@ -11,3 +11,5 @@ Thumbs.db
 
 # logs
 npm-debug.log*
+
+js/config.local.js
