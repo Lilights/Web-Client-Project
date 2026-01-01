@@ -3,6 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css" />
   <title>Playlists</title>
 </head>
@@ -15,31 +18,34 @@
     </nav>
   </header>
 
-  <main class="container">
-    <section class="split">
-      <aside class="sidebar card">
-        <div class="sidebar-head">
-          <h3>Your Library</h3>
-          <button id="newPlBtn" class="btn" type="button">+ New Playlist</button>
-        </div>
-        <div id="plList" class="pl-list"></div>
-      </aside>
+  <main class="page-center">
+    <div class="home-wrap">
 
-      <section class="main card">
-        <div id="mainHeader"></div>
+      <section class="split">
+        <aside class="sidebar card">
+          <div class="sidebar-head">
+            <h3>Your Library</h3>
+            <button id="newPlBtn" class="btn" type="button">+ New Playlist</button>
+          </div>
+          <div id="plList" class="pl-list"></div>
+        </aside>
 
-        <div class="row">
-          <input id="filterInput" class="input" placeholder="Filter within playlist..." />
-          <select id="sortSelect" class="input">
-            <option value="az">Sort A–Z</option>
-            <option value="rating">Sort by Rating</option>
-          </select>
-          <button id="deletePlBtn" class="btn-danger" type="button">Delete Playlist</button>
-        </div>
+        <section class="main card">
+          <div id="mainHeader"></div>
 
-        <div id="items" class="col"></div>
+          <div class="row">
+            <input id="filterInput" class="input" placeholder="Filter within playlist..." />
+            <select id="sortSelect" class="input">
+              <option value="az">Sort A–Z</option>
+              <option value="rating">Sort by Rating</option>
+            </select>
+            <button id="deletePlBtn" class="btn-danger" type="button">Delete Playlist</button>
+          </div>
+
+          <div id="items" class="col"></div>
+        </section>
       </section>
-    </section>
+    </div>
   </main>
 
   <!-- Playlist Player Modal -->

@@ -3,6 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css" />
   <title>Register</title>
 </head>
@@ -16,73 +19,76 @@
     </nav>
   </header>
 
-  <main class="container">
-    <section class="card col">
-      <form id="registerForm" class="col">
-        <label>Username</label>
-        <input class="input" name="username" autocomplete="username" />
+  <main class="page-center">
+    <div class="home-wrap">
 
-        <label>Password</label>
-        <input class="input" name="password" type="password" autocomplete="new-password" />
+      <section class="card col">
+        <form id="registerForm" class="col">
+          <label>Username</label>
+          <input class="input" name="username" autocomplete="username" />
 
-        <label>Confirm Password</label>
-        <input class="input" name="confirmPassword" type="password" autocomplete="new-password" />
+          <label>Password</label>
+          <input class="input" name="password" type="password" autocomplete="new-password" />
 
-        <label>First Name</label>
-        <input class="input" name="firstName" autocomplete="given-name" />
+          <label>Confirm Password</label>
+          <input class="input" name="confirmPassword" type="password" autocomplete="new-password" />
 
-        <label>Avatar URL</label>
-        <div class="row" style="gap:10px;">
-          <input class="input" name="avatarUrl" id="avatarUrlInput" placeholder="https://..." />
-          <button class="btn-secondary" type="button" id="pickAvatarBtn">Choose Avatar</button>
-        </div>
+          <label>First Name</label>
+          <input class="input" name="firstName" autocomplete="given-name" />
 
-        <!-- Avatar Picker Modal (Robohash) -->
-        <div id="avatarModal" class="modal hidden" aria-hidden="true">
-          <div class="modal-backdrop" data-close-avatar></div>
-          <div class="modal-content">
-            <button class="icon-btn" data-close-avatar type="button">×</button>
-
-            <h3 style="margin-top:0;">Pick an Avatar</h3>
-            <div class="muted" style="margin-bottom:10px;">
-              Powered by Robohash (free robot avatars).
-            </div>
-
-            <div class="row" style="gap:10px; margin-bottom:10px;">
-              <input id="avatarSeed" class="input" placeholder="Type a seed (e.g., username)..." />
-              <button class="btn" type="button" id="regenAvatarsBtn">Generate</button>
-            </div>
-
-            <div class="row" style="gap:10px; margin-bottom:10px;">
-              <label class="row" style="gap:8px; align-items:center; margin:0;">
-                <input type="radio" name="roboSet" value="set1" checked />
-                Robots
-              </label>
-              <label class="row" style="gap:8px; align-items:center; margin:0;">
-                <input type="radio" name="roboSet" value="set2" />
-                Monsters
-              </label>
-              <label class="row" style="gap:8px; align-items:center; margin:0;">
-                <input type="radio" name="roboSet" value="set3" />
-                Heads
-              </label>
-              <label class="row" style="gap:8px; align-items:center; margin:0;">
-                <input type="radio" name="roboSet" value="set4" />
-                Cats
-              </label>
-            </div>
-
-            <div id="avatarPreview" class="avatar-preview"></div>
-            <div id="avatarGrid" class="avatar-grid"></div>
+          <label>Avatar URL</label>
+          <div class="row" style="gap:10px;">
+            <input class="input" name="avatarUrl" id="avatarUrlInput" placeholder="https://..." />
+            <button class="btn-secondary" type="button" id="pickAvatarBtn">Choose Avatar</button>
           </div>
-        </div>
 
-        <div id="registerError" class="error" style="min-height:18px;"></div>
+          <!-- Avatar Picker Modal (Robohash) -->
+          <div id="avatarModal" class="modal hidden" aria-hidden="true">
+            <div class="modal-backdrop" data-close-avatar></div>
+            <div class="modal-content">
+              <button class="icon-btn" data-close-avatar type="button">×</button>
 
-        <button class="btn" type="submit">Create Account</button>
-        <a class="btn-secondary" href="login.html">Already have an account? Login</a>
-      </form>
-    </section>
+              <h3 style="margin-top:0;">Pick an Avatar</h3>
+              <div class="muted" style="margin-bottom:10px;">
+                Powered by Robohash (free robot avatars).
+              </div>
+
+              <div class="row" style="gap:10px; margin-bottom:10px;">
+                <input id="avatarSeed" class="input" placeholder="Type a seed (e.g., username)..." />
+                <button class="btn" type="button" id="regenAvatarsBtn">Generate</button>
+              </div>
+
+              <div class="row" style="gap:10px; margin-bottom:10px;">
+                <label class="row" style="gap:8px; align-items:center; margin:0;">
+                  <input type="radio" name="roboSet" value="set1" checked />
+                  Robots
+                </label>
+                <label class="row" style="gap:8px; align-items:center; margin:0;">
+                  <input type="radio" name="roboSet" value="set2" />
+                  Monsters
+                </label>
+                <label class="row" style="gap:8px; align-items:center; margin:0;">
+                  <input type="radio" name="roboSet" value="set3" />
+                  Heads
+                </label>
+                <label class="row" style="gap:8px; align-items:center; margin:0;">
+                  <input type="radio" name="roboSet" value="set4" />
+                  Cats
+                </label>
+              </div>
+
+              <div id="avatarPreview" class="avatar-preview"></div>
+              <div id="avatarGrid" class="avatar-grid"></div>
+            </div>
+          </div>
+
+          <div id="registerError" class="error" style="min-height:18px;"></div>
+
+          <button class="btn" type="submit">Create Account</button>
+          <a class="btn-secondary" href="login.html">Already have an account? Login</a>
+        </form>
+      </section>
+    </div>
   </main>
 
   <script type="module" src="js/register.js"></script>

@@ -3,41 +3,66 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="css/main.css" />
-  <title>Web Client Project</title>
+  <title>Home</title>
 </head>
 <body>
   <header class="topbar">
-    <div class="topbar-user">
-      <div class="meta">
-        <div class="hello">Web Client Project</div>
+    <div class="topbar-inner">
+      <div class="brand">
+        <span class="brand-dot"></span>
+        <span>Web Client Project</span>
       </div>
+
+      <nav class="topnav">
+        <a href="index.html" class="active">Home</a>
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+      </nav>
     </div>
-    <nav class="topnav">
-      <a href="index.html" class="active">Home</a>
-      <a href="login.html">Login</a>
-      <a href="register.html">Register</a>
-    </nav>
   </header>
 
-  <main class="container">
-    <section class="card col" style="gap:12px;">
-      <h2 style="margin:0;">Submission Details</h2>
+  <main class="page-center">
+    <div class="home-wrap">
+      <section class="card card-hero col" style="gap:10px;">
+        <h1 class="home-title">Music Playlists</h1>
+        <p class="home-sub">
+          Search YouTube videos, build playlists, and keep everything organized in a dark, modern UI.
+        </p>
 
-      <div class="col" style="gap:6px;">
-        <div><b>Student Name:</b>Nafna Khwaj</div>
-        <div><b>ID:</b>324914696</div>
-        <div><b>GitHub:</b> <a class="toast-action" href="YOUR_GITHUB_URL_HERE" target="_blank" rel="noreferrer">Link</a></div>
-        <div><b>Live:</b> <a class="toast-action" href="YOUR_LIVE_URL_HERE" target="_blank" rel="noreferrer">Link</a></div>
-      </div>
+        <div class="home-actions">
+          <a class="btn" href="login.html">Login</a>
+          <a class="btn-secondary" href="register.html">Create account</a>
+        </div>
 
-      <div class="row">
-        <a class="btn" href="login.html">Login</a>
-        <a class="btn-secondary" href="register.html">Register</a>
-      </div>
-    </section>
+        <div class="info-box">
+          <div class="info-grid">
+            <div class="k">Name</div>
+            <div class="v">Nafna Khwaj</div>
+
+            <div class="k">Student ID</div>
+            <div class="v">324914696</div>
+
+            <div class="k">GitHub</div>
+              <div class="v">
+                <a class="link" href="https://github.com/Lilights/Web-Client-Project" target="_blank" rel="noopener noreferrer">
+                  View repository
+                </a>
+              </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="muted" style="font-size:0.92rem;">
+          Tip: Register first, choose an avatar, then login to search and save videos to playlists.
+        </div>
+      </section>
+    </div>
   </main>
-
-  <script type="module" src="js/index.js"></script>
 </body>
 </html>
