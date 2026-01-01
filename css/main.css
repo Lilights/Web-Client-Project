@@ -153,6 +153,50 @@ img{ max-width: 100%; height: auto; }
   color: var(--text);
 }
 
+/* Logged-in header layout */
+.topbar-user{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  justify-content:flex-end;
+  min-width: 0;
+}
+
+.avatar-sm{
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  object-fit: cover;
+  background: rgba(255,255,255,0.06);
+}
+
+.hello-text{
+  font-weight: 800;
+  color: rgba(244,246,251,0.90);
+  white-space: nowrap;
+}
+
+.btn-mini{
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.07);
+  color: var(--text);
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.btn-mini:hover{
+  background: rgba(255,255,255,0.10);
+}
+
+.topbar-right{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+}
+
 /* ------------------------------
    Cards / Inputs / Buttons
    ------------------------------ */

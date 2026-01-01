@@ -11,12 +11,27 @@
 </head>
 <body>
   <header class="topbar">
-    <div data-topbar-user></div>
+  <div class="topbar-inner">
+    <div class="brand">
+      <span class="brand-dot"></span>
+      <span>Web Client Project</span>
+    </div>
+
     <nav class="topnav">
       <a href="search.html" class="active">Search</a>
       <a href="playlists.html">Playlists</a>
     </nav>
-  </header>
+
+    <div class="topbar-right">
+      <div class="topbar-user">
+        <img id="userAvatar" class="avatar-sm" alt="avatar" />
+        <div id="helloUser" class="hello-text">Hello</div>
+      </div>
+      <button id="logoutBtn" class="btn-mini" type="button">Logout</button>
+    </div>
+  </div>
+</header>
+
 
  <main class="page-center">
     <div class="home-wrap">
