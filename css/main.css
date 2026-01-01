@@ -650,3 +650,98 @@ select.input{
     grid-template-columns: 1fr;
   }
 }
+
+
+/* ---------- FIX: Playlists layout + white bar ---------- */
+
+/* Cards should be visually separated */
+.split > .card,
+.split > aside.card,
+.split > section.card{
+  margin: 0;
+}
+
+/* Ensure the two main cards have spacing even if split isn't used */
+.sidebar.card,
+.main.card{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Playlist list: each playlist should look like a proper row */
+.pl-list{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* If your JS renders playlist entries as buttons/links/divs inside #plList,
+   this styles them consistently and removes the white default look */
+#plList > *{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+}
+
+/* If the playlist entry is a <button>, kill default button styles */
+#plList button{
+  appearance: none;
+  -webkit-appearance: none;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  padding: 12px;
+  border-radius: 14px;
+}
+
+#plList button:hover{
+  background: rgba(255,255,255,0.10);
+}
+
+#plList .active,
+#plList button.active{
+  border-color: rgba(227,93,106,0.40);
+  background: rgba(227,93,106,0.12);
+}
+
+/* The row with filter/sort/delete: make spacing consistent */
+.main .row{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Inputs and selects share space nicely */
+.main .row .input{
+  flex: 1 1 260px;
+  min-width: 220px;
+}
+
+/* Buttons should not stretch or stick */
+.main .row button{
+  flex: 0 0 auto;
+}
+
+/* If you have a Play button near the header (outside the row), keep it aligned */
+#mainHeader{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+/* Optional: items list spacing */
+#items.col{
+  gap: 10px;
+}
