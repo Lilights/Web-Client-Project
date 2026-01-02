@@ -12,4 +12,7 @@ Thumbs.db
 # logs
 npm-debug.log*
 
+
+# Secrets / local config
+server/.env
 js/config.local.js

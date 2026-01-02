@@ -1,41 +1,16 @@
-import { YT } from "./config.js";
+import { API_BASE } from "./apiConfig.js";
 
 export async function searchYouTube(query) {
   const q = encodeURIComponent(query);
-  const searchUrl =
-    `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=${YT.maxResults}&q=${q}&key=${YT.apiKey}`;
+  const url = `${API_BASE}/api/youtube/search?q=${q}`;
 
-  const searchRes = await fetch(searchUrl);
-  const searchJson = await searchRes.json();
-  if (!searchRes.ok) throw new Error(searchJson?.error?.message || "YouTube search failed");
+  const res = await fetch(url);
+  const data = await res.json().catch(() => ({}));
 
-  const ids = (searchJson.items || []).map(it => it.id?.videoId).filter(Boolean);
-  if (ids.length === 0) return [];
-
-  // ✅ Add `status` so we can read `status.embeddable`
-  const detailsUrl =
-    `https://www.googleapis.com/youtube/v3/videos?part=contentDetails,statistics,snippet,status&id=${ids.join(",")}&key=${YT.apiKey}`;
-
-  const detailsRes = await fetch(detailsUrl);
-  const detailsJson = await detailsRes.json();
-  if (!detailsRes.ok) throw new Error(detailsJson?.error?.message || "YouTube details failed");
-
-  return (detailsJson.items || []).map(v => ({
-    id: v.id,
-    title: v.snippet?.title || "",
-    thumbnail: v.snippet?.thumbnails?.medium?.url || "",
-    durationSec: isoDurationToSeconds(v.contentDetails?.duration || "PT0S"),
-    views: Number(v.statistics?.viewCount || 0),
-
-    // ✅ If uploader blocks embedding, this will be false
-    embeddable: v.status?.embeddable !== false,
-  }));
-}
-
-function isoDurationToSeconds(iso) {
-  const m = /PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/.exec(iso) || [];
-  const h = Number(m[1] || 0), min = Number(m[2] || 0), s = Number(m[3] || 0);
-  return h * 3600 + min * 60 + s;
+  if (!res.ok) {
+    throw new Error(data?.error?.message || data?.error || "YouTube search failed");
+  }
+  return data;
 }
 
 export function formatDuration(sec) {
