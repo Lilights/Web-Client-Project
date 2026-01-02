@@ -88,26 +88,36 @@ img{ max-width: 100%; height: auto; }
    Topbar / Navigation
    ------------------------------ */
 
-.topbar{
+.topbar {
   position: sticky;
   top: 0;
-  z-index: 10;
-
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-
-  background: rgba(15, 17, 21, 0.70);
-  border-bottom: 1px solid var(--border);
+  z-index: 50;
 }
 
-.topbar-inner{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap: 12px;
-  width: min(var(--maxw), 100%);
+.topbar-inner {
+  max-width: var(--maxw);
   margin: 0 auto;
-  padding: 12px 18px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* brand left, right cluster right */
+  gap: 16px;
+}
+
+/* Right side: nav + (optional) user block */
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Navigation always stays on the right and keeps spacing */
+.topnav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;            /* important: remove page-to-page shifts */
+  padding: 0;
 }
 
 .brand{
@@ -126,11 +136,7 @@ img{ max-width: 100%; height: auto; }
   box-shadow: 0 12px 30px rgba(227,93,106,0.45);
 }
 
-.topnav{
-  display:flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
+
 
 .topnav a{
   padding: 8px 12px;
@@ -191,11 +197,6 @@ img{ max-width: 100%; height: auto; }
   background: rgba(255,255,255,0.10);
 }
 
-.topbar-right{
-  display:flex;
-  align-items:center;
-  gap: 10px;
-}
 
 /* ------------------------------
    Cards / Inputs / Buttons
